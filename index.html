@@ -357,36 +357,53 @@
     box-shadow: 0 0 0 2px var(--accent);
   }
   
-  .btn {
-    background: var(--accent);
-    color: var(--light);
-    padding: clamp(0.8rem, 2vw, 1rem) clamp(1.5rem, 4vw, 2rem);
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: clamp(0.8rem, 2vw, 1rem); 
-    display: inline-block;
-    text-align: center;
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  background-color: var(--primary);
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+  display: none;
+  flex-direction: column;
+  min-width: 160px;
+  z-index: 1000;
+  padding: 0;
+}
+
+.dropdown-menu li {
+  list-style: none;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 0.75rem 1rem;
+  color: var(--text);
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.dropdown-menu a:hover {
+  background-color: #222;
+}
+
+.dropdown.show .dropdown-menu {
+  display: flex;
+}
+
+/* Ajuste para mobile */
+@media (max-width: 768px) {
+  .dropdown-menu {
+    right: 0;
+    left: auto;
   }
-  
-  .btn:hover {
-    background: #0099cc;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 194, 255, 0.3);
-  }
-  
-  
-  @media (max-width: 900px) {
-    .btn {
-      width: 35%; 
-      padding: 0.9rem 1rem; 
-  }
-  
-  }
+}
+
   
   /* Services Section */
   .services {
@@ -845,15 +862,23 @@
         <img src="./images/eh.png" alt="Empresas Henrique Logo" class="logo-img" style="width:45px;height:45px;">
         Empresas Henrique
       </a>
-      <div class="nav-links">
-        <a href="#about" class="btn">Sobre Mim</a>
-        <a href="#portfolio" class="btn">Portfólio</a>
-        <a href="#contratar" class="btn">Contratar</a>
+      <div class="nav-links dropdown">
+        <button class="btn menu-toggle">Menu</button>
+        <ul class="dropdown-menu">
+          <li><a href="#about">Sobre Mim</a></li>
+          <li><a href="#portfolio">Portfólio</a></li>
+          <li><a href="#contratar">Contratar</a></li>
+        </ul>
+        
         <button class="dark-mode-toggle" id="darkModeToggle">
           <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" fill="none">
             <path class="sun" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
             <path class="moon" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
           </svg>
+        </button>
+      </div>
+
+
         </button>
       </div>
     </div>
